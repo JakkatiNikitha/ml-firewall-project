@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Upload Dataset for Attack Detection</h1>
+    <form action="/detect" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="dataset" class="form-label">Select Dataset:</label>
+            <select class="form-select" id="dataset" name="dataset">
+                <option value="mitm_dataset">MITM Dataset</option>
+                <option value="malware_dataset">Malware Dataset</option>
+                <option value="password_dataset">Password Dataset</option>
+                <option value="combined_dataset">Combined Dataset (All Attacks)</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Choose CSV File:</label>
+            <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload & Detect</button>
+    </form>
+</div>
+{% endblock %}

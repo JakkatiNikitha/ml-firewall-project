@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Random Sample Detection</h1>
+    <div class="alert {{ 'alert-danger' if attack_detected else 'alert-success' }} mt-4">
+        {% if attack_detected %}
+        <strong>Alert!</strong> An attack has been detected. Immediate action is required.
+        <br>
+        <strong>Detected Attacks:</strong> {{ ', '.join(detected_attacks) }}
+        {% else %}
+        <strong>No Attack Detected.</strong> The system is secure.
+        {% endif %}
+    </div>
+    <h3>Detection Results:</h3>
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Dataset</th>
+                <th>Detection Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dataset, result in detection_results.items() %}
+            <tr>
+                <td>{{ dataset.replace('_', ' ').title() }}</td>
+                <td>{{ result }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/upload" class="btn btn-primary mt-3">Upload Another File</a>
+</div>
+{% endblock %}

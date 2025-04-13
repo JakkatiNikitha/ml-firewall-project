@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Detection Results</h1>
+    <div class="mt-4">
+        {% for dataset, counts in prediction_counts.items() %}
+        <h3>{{ dataset.replace('_', ' ').title() }}</h3>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Attack Type</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for attack, count in counts.items() %}
+                <tr>
+                    <td>{{ attack }}</td>
+                    <td>{{ count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
+    <a href="/upload" class="btn btn-primary mt-3">Upload Another File</a>
+</div>
+{% endblock %}
